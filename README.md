@@ -2,7 +2,7 @@ JSH
 ===
 JSF 2 (inculding primefaces), Spring 3 and hibernate 4 integration mini project.
 
-The code itself is found on Internet(<a href="http://www.javacodegeeks.com/2012/04/jsf-2-primefaces-3-spring-3-hibernate-4.html">From here</a>). 
+The code itself is found on Internet (<a href="http://www.javacodegeeks.com/2012/04/jsf-2-primefaces-3-spring-3-hibernate-4.html">From here</a>). 
 and here is the sql code of the database: 
 CREATE TABLE USER (  id int(11) NOT NULL,   name varchar(45) NOT NULL,   surname varchar(45) NOT NULL,   PRIMARY KEY (`id`));
 and of course don't forget to update the application-context.xml file with your correvt DB credentials.

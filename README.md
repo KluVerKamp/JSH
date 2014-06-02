@@ -15,4 +15,4 @@ If u want to build from the CMD, run "mvn ecilpse:eclipse -Dwtpversion=2".
 Note that all the dependencies will be listed direclty under the root folder of the project, not under the "library" node under your classpath.
 Still, it will build well.
 
-For the latest version, the issue mentioned up here is fixed. So just run an mvn install and all should be all right.
+For the latest version of Eclipse, the issue mentioned up here is fixed. So just run an mvn install and all should be all right.

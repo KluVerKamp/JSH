@@ -1,9 +1,21 @@
 package kluverkamp.model;
 
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.JoinTable;
 
 /**
  * 
@@ -15,20 +27,31 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="USER")
+@Table(name="users")
 public class User {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID", unique = true, nullable = false)
 	private int id;
+	
+	@Column(name="NAME", unique = true, nullable = false)
 	private String name;
-	private String surname;
+	
+	@ManyToOne
+	@JoinColumn(name = "role_id", nullable = false)
+	private Role role;
+	
+	@ManyToMany(cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
+	@JoinTable(name="users_meetings",joinColumns={@JoinColumn(name="user_id")}, 
+	               inverseJoinColumns={@JoinColumn(name="meeting_id")})
+	private Set<Meeting> meetings = new HashSet<Meeting>();
 	
 	/**
 	 * Get User Id
 	 * 
 	 * @return int - User Id
 	 */
-	@Id
-	@Column(name="ID", unique = true, nullable = false)
+
 	public int getId() {
 		return id;
 	}
@@ -38,6 +61,7 @@ public class User {
 	 * 
 	 * @param int - User Id
 	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -47,7 +71,7 @@ public class User {
 	 * 
 	 * @return String - User Name
 	 */
-	@Column(name="NAME", unique = true, nullable = false)
+
 	public String getName() {
 		return name;
 	}
@@ -61,31 +85,30 @@ public class User {
 		this.name = name;
 	}
 	
-	/**
-	 * Get User Surname
-	 * 
-	 * @return String - User Surname
-	 */
-	@Column(name="SURNAME", unique = true, nullable = false)
-	public String getSurname() {
-		return surname;
+	
+
+	public Role getRole() {
+		return this.role;
+	}
+ 
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
-	/**
-	 * Set User Surname
-	 * 
-	 * @param String - User Surname
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}	
-	
+
+	public Set<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public void setMeetings(Set<Meeting> meetings) {
+		this.meetings = meetings;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer strBuff = new StringBuffer();
 		strBuff.append("id : ").append(getId());
 		strBuff.append(", name : ").append(getName());
-		strBuff.append(", surname : ").append(getSurname());
 		return strBuff.toString();
 	}
 }

@@ -3,14 +3,11 @@ package kluverkamp.managed.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-
 import kluverkamp.model.User;
 import kluverkamp.user.service.IUserService;
-
 import org.springframework.dao.DataAccessException;
 
 
@@ -39,7 +36,6 @@ public class UserManagedBean implements Serializable {
 	
 	private int id;
 	private String name;
-	private String surname;
 	
 	/**
 	 * Add User
@@ -51,7 +47,6 @@ public class UserManagedBean implements Serializable {
 			User user = new User();
 			user.setId(getId());
 			user.setName(getName());
-			user.setSurname(getSurname());
 			getUserService().addUser(user);
 			return SUCCESS;
 		} catch (DataAccessException e) {
@@ -68,7 +63,6 @@ public class UserManagedBean implements Serializable {
 	public void reset() {
 		this.setId(0);
 		this.setName("");
-		this.setSurname("");
 	}
 	
 	/**
@@ -79,6 +73,8 @@ public class UserManagedBean implements Serializable {
 	public List<User> getUserList() {
 		userList = new ArrayList<User>();
 		userList.addAll(getUserService().getUsers());
+		System.out.println(userList.get(2).getMeetings());
+		System.out.println(userList.get(2).getRole());
 		return userList;
 	}
 	
@@ -143,24 +139,6 @@ public class UserManagedBean implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	/**
-	 * Get User Surname
-	 * 
-	 * @return String - User Surname
-	 */
-	public String getSurname() {
-		return surname;
-	}
-	
-	/**
-	 * Set User Surname
-	 * 
-	 * @param String - User Surname
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 	
 }

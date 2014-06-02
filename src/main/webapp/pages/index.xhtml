@@ -2,7 +2,9 @@
      xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">  
- <h:head><title>JSH</title></h:head>  
+ <h:head>
+ 	<title>JSH</title>
+ </h:head>  
  <h:body>
      <h:form>      
 	     <table> 
@@ -24,15 +26,6 @@
 		     		<p:message id="nameMsg" for="name" display="icon"/> 
 		     	</td>
 		     </tr>
-		     <tr>
-		     	<td><h:outputLabel for="surname" value="Surname : " /></td>   
-		     	<td><p:inputText id="surname" value="#{userMB.surname}"> 
-		     			<f:validateLength minimum="5" /> 
-		     			<p:ajax event="blur" update="surnameMsg" />  
-		     		</p:inputText>
-		     		<p:message id="surnameMsg" for="surname" display="icon"/> 
-		     	</td>    
-		     </tr>            
 	         <tr>
 		     	<td><p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
 		     	<td><p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
